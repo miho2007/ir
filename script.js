@@ -18,21 +18,30 @@ document.addEventListener("DOMContentLoaded", () => {
     // Event listener for the fullscreen button
     fullscreenButton.addEventListener('click', goFullscreen);
 
-    // Check if the browser supports accessing the camera
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        // Request access to the back camera
-        navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: "environment" } } })
-            .then(stream => {
-                video.srcObject = stream;
-                video.play();
-            })
-            .catch(error => {
-                console.error("Error accessing the camera", error);
-                alert(`Error accessing the camera: ${error.message}`);
-            });
-    } else {
-        console.error("getUserMedia not supported in this browser");
-        alert("getUserMedia not supported in this browser");
+    // Function to start the camera with the back camera
+    function startCamera(deviceId) {
+        navigator.mediaDevices.getUserMedia({
+            video: { deviceId: deviceId ? { exact: deviceId } : undefined }
+        })
+        .then(stream => {
+            video.srcObject = stream;
+            video.play();
+        })
+        .catch(error => {
+            console.error("Error accessing the camera", error);
+            alert(`Error accessing the camera: ${error.message}`);
+        });
     }
-});
 
+    // Get the list of devices and find the back camera
+    navigator.mediaDevices.enumerateDevices()
+        .then(devices => {
+            const videoDevices = devices.filter(device => device.kind === 'videoinput');
+            const backCamera = videoDevices.find(device => device.label.toLowerCase().includes('back')) || videoDevices[0];
+            startCamera(backCamera.deviceId);
+        })
+        .catch(error => {
+            console.error("Error enumerating devices", error);
+            alert(`Error enumerating devices: ${error.message}`);
+        });
+});
