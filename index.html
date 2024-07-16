@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR Experience</title>
 
     <!-- A-Frame and AR.js scripts -->
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/ar.js/aframe/build/aframe-ar.js"></script>
 
-    <title>AR Experience</title>
     <style>
         body, html {
             margin: 0;
@@ -19,6 +19,7 @@
             justify-content: center;
             align-items: center;
             background-color: #000;
+            overflow: hidden; /* Prevent scrolling */
         }
         a-scene {
             width: 100%;
@@ -28,19 +29,25 @@
 </head>
 <body>
     <a-scene embedded arjs>
-        <!-- AR content (e.g., a basic box) -->
+        <!-- AR content (a red box) -->
         <a-box position="0 0.5 0" material="color: red;"></a-box>
-        <!-- Marker for AR -->
-        <a-marker-camera preset='hiro'></a-marker-camera>
+        
+        <!-- Marker for AR (Hiro marker) -->
+        <a-marker preset="hiro">
+            <!-- Content to display when marker is detected -->
+            <a-box position="0 0.5 0" material="color: red;"></a-box>
+        </a-marker>
+
+        <!-- Camera for AR -->
+        <a-entity camera></a-entity>
     </a-scene>
 
+    <!-- JavaScript for interactions -->
     <script>
-        // JavaScript code to handle interactions or animations
+        // Optional JavaScript for interactions or animations
         document.addEventListener('DOMContentLoaded', function() {
-            const scene = document.querySelector('a-scene');
+            // Example interaction: Change box color on click
             const box = document.querySelector('a-box');
-
-            // Example: Change box color on click
             box.addEventListener('click', function() {
                 const colors = ['red', 'green', 'blue'];
                 const randomColor = colors[Math.floor(Math.random() * colors.length)];
