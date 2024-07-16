@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Check if the browser supports accessing the camera
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         // Request access to the back camera
-        navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } })
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: "environment" } } })
             .then(stream => {
                 video.srcObject = stream;
                 video.play();
@@ -35,3 +35,4 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("getUserMedia not supported in this browser");
     }
 });
+
