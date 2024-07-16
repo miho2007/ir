@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AR Experience</title>
-
+    
     <!-- A-Frame and AR.js scripts -->
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/ar.js/aframe/build/aframe-ar.js"></script>
 
+    <title>AR Experience</title>
+    
+    <!-- Additional styles (if needed) -->
     <style>
         body, html {
             margin: 0;
@@ -28,8 +30,9 @@
     </style>
 </head>
 <body>
+    <!-- A-Frame scene with AR.js attributes -->
     <a-scene embedded arjs>
-        <!-- AR content (a red box) -->
+        <!-- AR content (e.g., a red box) -->
         <a-box position="0 0.5 0" material="color: red;"></a-box>
         
         <!-- Marker for AR (Hiro marker) -->
@@ -57,4 +60,5 @@
     </script>
 </body>
 </html>
+
 
