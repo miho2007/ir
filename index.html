@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- A-Frame and AR.js scripts -->
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/ar.js/aframe/build/aframe-ar.js"></script>
+    
     <title>AR Experience</title>
     <style>
         body, html {
@@ -38,8 +43,6 @@
         <!-- Marker for AR -->
         <a-marker-camera preset='hiro'></a-marker-camera>
     </a-scene>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/ar.js/aframe/build/aframe-ar.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const fullscreenButton = document.getElementById('fullscreen-button');
@@ -62,3 +65,4 @@
     </script>
 </body>
 </html>
+
