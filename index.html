@@ -38,23 +38,24 @@
         <!-- Marker for AR (Hiro marker) -->
         <a-marker preset="hiro">
             <!-- AR content to display when marker is detected -->
-            <a-box position="0 0.5 0" material="color: red;"></a-box>
+            <a-box id="arBox" position="0 0.5 0" material="color: red;"></a-box>
         </a-marker>
-
-        <!-- Optional: Lights for better marker detection -->
-        <a-light type="ambient" intensity="0.5"></a-light>
-        <a-light type="point" intensity="1" position="2 4 4"></a-light>
     </a-scene>
 
     <!-- Optional: JavaScript for interactions -->
     <script>
-        // Optional JavaScript for interactions or animations
+        // Wait for the DOM to be fully loaded
         document.addEventListener('DOMContentLoaded', function() {
             // Example interaction: Change box color on click
-            const box = document.querySelector('a-box');
+            const box = document.querySelector('#arBox');
+
+            // Add click event listener to the box
             box.addEventListener('click', function() {
+                // Array of colors to choose from
                 const colors = ['red', 'green', 'blue'];
+                // Pick a random color
                 const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                // Update box material color attribute
                 box.setAttribute('material', 'color', randomColor);
             });
         });
